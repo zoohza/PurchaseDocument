@@ -1,0 +1,45 @@
+<mvc:View controllerName="fiori.gems.purchase.documents.ZGEMS_TEST_PO.controller.PurchaseDocument" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<App id="idAppControl">
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+					<Table id="POtable" items="{/PurchaseOrderSet}">
+						<columns>
+							<Column demandPopin="true">
+								<Text text="PO Number"/>
+							</Column>
+							<Column demandPopin="true">
+								<Text text="Company Code"/>
+							</Column>
+							<Column demandPopin="true">
+								<Text text="Purchasing Org."/>
+							</Column>				
+							<Column demandPopin="true">
+								<Text text="Vendor"/>
+							</Column>
+							<Column demandPopin="true">
+								<Text text="Document  type"/>
+							</Column>							
+							<Column demandPopin="true">
+								<Text text="Status"/>
+							</Column>							
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{PoNumber}"/>
+									<Text text="{CoCode}"/>
+									<Text text="{PurchOrg}"/>
+									<Text text="{Vendor}"/>
+									<Text text="{DocType}"/>
+									<Text text="{Status}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,44 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="YTEST_GEMS_GET_PO_DATA_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="PurchaseOrder" sap:content-version="1">
+				<Key><PropertyRef Name="PoNumber"/></Key><Property Name="PoNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Purchasing Doc." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CoCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Company Code" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DocCat" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Doc. Category" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DocType" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Document Type" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Status" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Vendor" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Vendor" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PurchOrg" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Purchasing Org." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PurGroup" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Purch. Group" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/><NavigationProperty Name="ToPurchaseOrderItem" Relationship="YTEST_GEMS_GET_PO_DATA_SRV.po_link" FromRole="FromRole_po_link"
+					ToRole="ToRole_po_link"/></EntityType>
+			<EntityType Name="PurchaseOrderItem" sap:content-version="1">
+				<Key><PropertyRef Name="PoNumber"/><PropertyRef Name="PoItem"/></Key><Property Name="PoNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Purchasing Doc." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PoItem" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Item" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Material" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ItemCat" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Item Category" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Acctasscat" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Acct Assgt Cat." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="StoreLoc" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Stor. Location" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ShortText" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Short Text" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Plant" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Order Unit" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/><Property Name="NetPrice" Type="Edm.Decimal" Nullable="false" Precision="23" Scale="4" sap:label="Net price" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PriceUnit" Type="Edm.Decimal" Nullable="false" Precision="5" Scale="0" sap:label="Price Unit" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="DispQuan" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:label="Order quantity" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<Association Name="po_link" sap:content-version="1"><End Type="YTEST_GEMS_GET_PO_DATA_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_po_link"/><End Type="YTEST_GEMS_GET_PO_DATA_SRV.PurchaseOrderItem" Multiplicity="*" Role="ToRole_po_link"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_po_link"><PropertyRef Name="PoNumber"/></Principal>
+					<Dependent Role="ToRole_po_link"><PropertyRef Name="PoNumber"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="YTEST_GEMS_GET_PO_DATA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="PurchaseOrderSet" EntityType="YTEST_GEMS_GET_PO_DATA_SRV.PurchaseOrder" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="PurchaseOrderItemSet" EntityType="YTEST_GEMS_GET_PO_DATA_SRV.PurchaseOrderItem" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="po_linkSet" Association="YTEST_GEMS_GET_PO_DATA_SRV.po_link" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="PurchaseOrderSet" Role="FromRole_po_link"/><End EntitySet="PurchaseOrderItemSet" Role="ToRole_po_link"/></AssociationSet>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/YTEST_GEMS_GET_PO_DATA_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/YTEST_GEMS_GET_PO_DATA_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
